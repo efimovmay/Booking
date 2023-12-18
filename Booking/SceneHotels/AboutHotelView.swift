@@ -12,12 +12,7 @@ struct AboutHotelView: View {
 	
 	var body: some View {
 		VStack (spacing: 16)  {
-			HStack {
-				Text("Об отеле")
-					.font(.system(size: 22))
-					.fontWeight(.semibold)
-				Spacer()
-			}
+			header
 			TagsView(tags: viewModel.hotel.aboutTheHotel.peculiarities)
 			Text(viewModel.hotel.aboutTheHotel.description)
 			AboutButtonView()
@@ -27,11 +22,21 @@ struct AboutHotelView: View {
 		.background(.white)
 		.clipShape(RoundedRectangle(cornerRadius: 15))
 	}
+	
+	private var header: some View {
+		HStack {
+			Text("Об отеле")
+				.font(.system(size: 22))
+				.fontWeight(.semibold)
+			Spacer()
+		}
+	}
 }
 
 struct AboutHotelView_Previews: PreviewProvider {
 	static var previews: some View {
-		AboutHotelView(viewModel: HotelViewModel())
+		let vm = HotelViewModel()
+		let _ = vm.fetchMocData()
+		AboutHotelView(viewModel: vm)
 	}
 }
-
