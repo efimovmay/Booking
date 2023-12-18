@@ -8,11 +8,62 @@
 import SwiftUI
 
 struct CustomTextFieldView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+
+	private var title: String
+	@Binding private var text: String
+	private var prompt: String?
+	private var isSecure: Bool
+	
+	init(title: String, text: Binding<String>, prompt: String? = nil, isSecure: Bool = false) {
+		self.title = title
+		self._text = text
+		self.prompt = prompt
+		self.isSecure = isSecure
+	}
+	
+	var body: some View {
+		
+		ZStack(alignment: .leading) {
+			
+			if isSecure {
+				SecureField(title, text: $text)
+					.textFieldStyle(CustomTextFieldStyle())
+			} else  {
+				VStack {
+					TextField(title, text: $text)
+						.textFieldStyle(CustomTextFieldStyle())
+				}
+			}
+			
+			if let prompt = prompt {
+				Text(prompt)
+					.foregroundColor(Colors.grayText)
+					.padding(.horizontal)
+					.offset(y: text.isEmpty ? 0 : -15)
+					.scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
+					.animation(.default)
+			}
+		}
+	}
 }
 
-#Preview {
-    CustomTextFieldView()
+struct CustomTextFieldStyle: TextFieldStyle {
+	func _body(configuration: TextField<Self._Label>) -> some View {
+		return configuration
+			.padding(.horizontal, 16)
+			.frame(height: 52)
+			.background(Colors.backgroundColor.cornerRadius(15))
+			.autocorrectionDisabled()
+			.textInputAutocapitalization(.never)
+			
+			
+	}
 }
+
+struct CustomTextFeldView_Previews: PreviewProvider {
+	static var previews: some View {
+		CustomTextFieldView(title: "", text: .constant("") , prompt: "Name")
+			.padding(16)
+	}
+}
+

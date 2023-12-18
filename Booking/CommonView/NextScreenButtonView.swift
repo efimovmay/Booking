@@ -10,25 +10,19 @@ import SwiftUI
 struct NextScreenButtonView: View {
 	
 	@EnvironmentObject private var coordinator: Coordinator
+	
 	let destination: Page
+	let title: String
 	
 	var body: some View {
-		ZStack {
-			Divider()
-			Rectangle()
-				.foregroundColor(.white)
-			
+
 			Button {
 				coordinator.push(destination)
 			} label: {
-				Text("К выбору номера")
+				Text(title)
 					.styleButtonText()
 			}
 			.padding(.horizontal, 16.0)
-			.padding(.vertical, 16.0)
-			.padding(.bottom, 30)
-			
-		}
 	}
 }
 
@@ -49,6 +43,6 @@ extension Text {
 
 struct NextScreenButtonView_Previews: PreviewProvider {
 	static var previews: some View {
-		NextScreenButtonView(destination: .hotel)
+		NextScreenButtonView(destination: .hotel, title: "Button")
 	}
 }

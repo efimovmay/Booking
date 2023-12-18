@@ -12,9 +12,16 @@ struct AboutHotelView: View {
 	
 	var body: some View {
 		VStack (spacing: 16)  {
+			//MARK: - "Отель"
 			header
+			
+			//MARK: - Тэги
 			TagsView(tags: viewModel.hotel.aboutTheHotel.peculiarities)
+			
+			//MARK: - Текстовая информаци об отеле
 			Text(viewModel.hotel.aboutTheHotel.description)
+
+			//MARK: - Удобства, Что включено...
 			AboutButtonView()
 		}
 		.padding(.vertical, 16)

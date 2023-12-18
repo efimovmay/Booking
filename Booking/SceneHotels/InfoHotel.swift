@@ -70,6 +70,7 @@ struct InfoHotel: View {
 			Text(viewModel.minimalPriceText)
 				.font(.system(size: 30))
 				.fontWeight(.semibold)
+				.fixedSize(horizontal: true, vertical: true)
 			Text(viewModel.hotel.priceForIt)
 				.font(.system(size: 16))
 				.foregroundColor(Colors.grayText)

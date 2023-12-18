@@ -8,11 +8,39 @@
 import SwiftUI
 
 struct TouristsInfo: View {
+	
+	@StateObject var viewModel: RegisterViewModel
+	@State var name: String = ""
+	@State var active: Bool = false
+	
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+		
+		VStack {
+			HStack {
+				Text("Первый турист")
+				Spacer()
+				Button(
+					action: {
+						active.toggle()
+					}, label: {
+						/*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
+					}
+				)
+			}
+			if active {
+				TextField("", text: $name)
+					.foregroundColor(.blue)
+			}
+		}
+		.tileStyle()
+		
     }
+	
+//	private func textfeeldTouristInfo(name: String) -> some View {
+//		TextField("Имя", text: name)
+//	}
 }
 
 #Preview {
-    TouristsInfo()
+	TouristsInfo(viewModel: RegisterViewModel())
 }

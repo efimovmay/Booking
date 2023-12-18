@@ -7,44 +7,52 @@
 
 import SwiftUI
 
-struct HotelsView: View {
+struct HotelView: View {
+	
 	@EnvironmentObject private var coordinator: Coordinator
 	@StateObject private var viewModel = HotelViewModel()
 	
 	var body: some View {
-		NavigationStack {
-			ZStack {
+		ZStack {
+			if viewModel.isRefreshing {
+				ProgressView()
+			} else {
 				ScrollView {
+					//MARK: - Основные данные об отеле
 					InfoHotel(viewModel: viewModel)
+					
+					//MARK: - Подробные данные об отеле
 					AboutHotelView(viewModel: viewModel)
-					ZStack {
-						Divider()
-						Rectangle()
-							.foregroundColor(.white)
-						ButtonView(textButton: "К выбору номера",
-								   destenation: RoomsView(),
-								   nameNewView: "") //viewModel.hotel[0].name)
-//						Button("dfd") {
-//							coordinator.push(.rooms)
-//						}
-						.padding(.top, 12)
-						.padding(.bottom, 30)
-					}
+					
+					//MARK: - Кнопка выбора отеля
+					NextScreenView()
 				}
-				.ignoresSafeArea()
-				.background(Colors.backgroundColor)
-				.onAppear(perform: {
-					viewModel.fetchData()
-				})
 			}
 		}
-		.onAppear(perform: {
-			viewModel.fetchData()
-		})
+		.navigationBarBackButtonHidden()
+		.ignoresSafeArea()
+		.background(Colors.backgroundColor)
+		
+		.alert("Ошибка загрузки данных", isPresented: $viewModel.hasError) {
+			Button("Да") { viewModel.fetchMocData() }
+			Button("Повторить") { viewModel.fetchData() }
+		} message: {
+			Text("Отобразить с мок данными?")
+		}
 	}
 	
+	private func NextScreenView() -> some View {
+		ZStack {
+			Rectangle()
+				.foregroundColor(.white)
+			NextScreenButtonView(destination: .rooms, title: "К выбору номера")
+				.padding(.top, 16.0)
+				.padding(.bottom, 25)
+			
+		}
+	}
 }
 
 #Preview {
-    HotelsView()
+	HotelView()
 }

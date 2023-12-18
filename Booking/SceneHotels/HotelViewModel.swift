@@ -5,43 +5,55 @@
 //  Created by Aleksey Efimov on 15.12.2023.
 //
 
-import Foundation
+import SwiftUI
 import Combine
 
 class HotelViewModel: ObservableObject {
 	
-	@Published var hotel = [Hotel]()
+	@Published var hotel: Hotel!
+	@Published var hasError = false
+	var isRefreshing = true
+	
+	var minimalPriceText: String {
+		"от \(hotel.minimalPrice.formattedWithSeparator) ₽"
+	}
 	
 	private var cancellables = Set<AnyCancellable>()
 	
-	var minimalPriceText: String {
-		"от \(hotel[0].minimalPrice.formattedWithSeparator) \(getSymbol(code: "RUB") ?? "Р")"
-	}
-	
 	init() {
+		fetchData()
 	}
 	
+	func fetchMocData() {
+		hotel = Hotel.getHotel()
+		isRefreshing = false
+		hasError = false
+	}
+
 	func fetchData() {
-		guard let url = URL(string: "https://run.mocky.io/v3/35e0d18e-2521-4f1b-a575-f0fe366f66e3") else { return }
+		guard let url = URL(string: "https://run.mocky.io/v3/d144777c-a67f-4e35-867a-cacc3b827473") else { return }
+		
+		isRefreshing = true
+		hasError = false
+		
 		let decoder = JSONDecoder()
 		decoder.keyDecodingStrategy = .convertFromSnakeCase
+		
 		URLSession.shared.dataTaskPublisher(for: url)
-			.subscribe(on: DispatchQueue.global(qos: .background))
 			.receive(on: DispatchQueue.main)
 			.tryMap(hanleOutput)
 			.decode(type: Hotel.self, decoder: decoder)
-			.replaceError(with: Hotel.getHotel())
-			.sink { (completion) in
+			.sink { completion in
 				switch completion {
 				case .finished:
-					print("complete")
+					self.isRefreshing = false
 				case .failure(let error):
 					print("Error: \(error)")
-					self.hotel.append(Hotel.getHotel())
-					
+					self.hasError = true
 				}
-			} receiveValue: { [weak self] (hotel) in
-				self?.hotel.append(hotel)
+			} receiveValue: { [weak self] hotel in
+				self?.hotel = hotel
+				self?.isRefreshing = false
 			}
 			.store(in: &cancellables)
 	}
@@ -52,14 +64,5 @@ class HotelViewModel: ObservableObject {
 			throw URLError(.badServerResponse)
 		}
 		return output.data
-	}
-	
-	private func getSymbol(code: String) -> String? {
-		let result = Locale
-			.availableIdentifiers
-			.map { Locale(identifier: $0) }
-			.first { $0.currency?.identifier == code }
-		
-		return result?.currencySymbol
 	}
 }

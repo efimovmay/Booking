@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct PriceView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+	let room: Room
+	var body: some View {
+		HStack (alignment: .bottom, spacing: 5) {
+			Text(String(room.price.formattedWithSeparator))
+				.font(.system(size: 30))
+				.fontWeight(.semibold)
+			
+			Text("₽")
+				.font(.system(size: 30))
+				.fontWeight(.semibold)
+			
+			Text(room.pricePer)
+				.font(.system(size: 16))
+				.foregroundColor(Colors.grayText)
+		}
+		.padding(.top, 8)
+	}
 }
 
 #Preview {
-    PriceView()
+	PriceView(room: Room.getRoom())
 }

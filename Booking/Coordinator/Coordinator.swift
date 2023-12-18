@@ -51,33 +51,3 @@ final class Coordinator: ObservableObject {
 		}
 	}
 }
-	
-	// MARK: Flow Coordinator Bindings
-//	private func bind(userCoordinator: UserFlowCoordinator) {
-//		userCoordinator.pushCoordinator
-//			.receive(on: DispatchQueue.main)
-//			.sink(receiveValue: { [weak self] coordinator in
-//				self?.push(coordinator)
-//			})
-//			.store(in: &cancellables)
-//	}
-//	
-//	private func bind(settingsCoordinator: SettingsFlowCoordinator) {
-//		settingsCoordinator.pushCoordinator
-//			.receive(on: DispatchQueue.main)
-//			.sink(receiveValue: { [weak self] coordinator in
-//				self?.push(coordinator)
-//			})
-//			.store(in: &cancellables)
-//	}
-//	
-//	private func bind(profileCoordinator: ProfileFlowCoordinator) {
-//		profileCoordinator.pushCoordinator
-//			.receive(on: DispatchQueue.main)
-//			.sink(receiveValue: { [weak self] coordinator in
-//				self?.push(coordinator)
-//			})
-//			.store(in: &cancellables)
-//	}
-//}
-

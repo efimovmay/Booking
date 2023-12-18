@@ -8,11 +8,43 @@
 import SwiftUI
 
 struct InfoPersonView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+	
+	@StateObject var viewModel: RegisterViewModel
+	
+	var body: some View {
+		VStack(alignment: .leading) {
+			Text("Информация о покупателе")
+				.fontWeight(.semibold)
+				.font(.system(size: 22))
+			
+			CustomTextFieldView(title: "", text: $viewModel.phoneNumber, prompt: "Номер Телефона")
+				.onChange(of: viewModel.phoneNumber) { newValue in
+					DispatchQueue.main.async {
+						viewModel.phoneNumber = viewModel.phoneNumber.formattedMask(text: viewModel.phoneNumber, mask: "+X (XXX) XXX-XX-XX")
+					}
+				}
+			CustomTextFieldView(title: "", text: $viewModel.email, prompt: "Почта")
+			text
+		}
+		.frame(maxWidth: .infinity, alignment: .leading)
+		.padding(.horizontal, 16)
+		.padding(.vertical, 16)
+		.background(.white)
+		.clipShape(RoundedRectangle(cornerRadius: 15))
+	}
+	var text: some View {
+		Text("Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту")
+			.foregroundColor(Colors.grayText)
+			.font(.system(size: 14))
+	}
 }
+	
 
-#Preview {
-    InfoPersonView()
+
+struct InfoPersonView_Previews: PreviewProvider {
+	static var previews: some View {
+		let vm = RegisterViewModel()
+		let _ = vm.fetchMocData()
+		InfoPersonView(viewModel: vm)
+	}
 }

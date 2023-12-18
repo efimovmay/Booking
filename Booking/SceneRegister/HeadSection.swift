@@ -8,11 +8,32 @@
 import SwiftUI
 
 struct HeadSection: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+	
+	@StateObject var viewModel: RegisterViewModel
+	
+	var body: some View {
+		VStack(alignment: .leading, spacing: 8) {
+			StarRatingView(rating: viewModel.infoBooking.horating, ratingName: viewModel.infoBooking.ratingName)
+			Text(viewModel.infoBooking.hotelName)
+				.fontWeight(.semibold)
+				.font(.system(size: 22))
+			Button {
+				// action botton
+			} label: {
+				Text(viewModel.infoBooking.hotelAdress)
+					.font(.system(size: 14))
+			}
+		}
+		.tileStyle()
+	}
 }
 
-#Preview {
-    HeadSection()
+
+struct HeadSection_Previews: PreviewProvider {
+	static var previews: some View {
+		let vm = RegisterViewModel()
+		let _ = vm.fetchMocData()
+		HeadSection(viewModel: vm)
+	}
 }
+
