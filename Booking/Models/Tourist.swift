@@ -8,22 +8,26 @@
 import Foundation
 
 
-struct Tourist {
-	let name: String
-	let surname: String
-	let dateOfBirth: String
-	let citizenship: String
-	let numberPass: String
-	let validityPass: String
+struct Tourist: Hashable {
+	var isActive: Bool
+	var name: String
+	var surname: String
+	var dateOfBirth: String
+	var citizenship: String
+	var numberPass: String
+	var validityPass: String
 }
 
 extension Tourist {
-	static func getTourist() {
-		Tourist(name: "",
-				surname: "",
-				dateOfBirth: "",
-				citizenship: "",
-				numberPass: "",
-				validityPass: "")
+	static func getTourist() -> Tourist {
+		Tourist(
+			isActive: true,
+			name: "",
+			surname: "",
+			dateOfBirth: "",
+			citizenship: "",
+			numberPass: "",
+			validityPass: ""
+		)
 	}
 }

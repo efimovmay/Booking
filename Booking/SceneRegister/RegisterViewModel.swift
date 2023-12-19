@@ -11,18 +11,25 @@ import Combine
 class RegisterViewModel: ObservableObject {
 	
 	@Published var infoBooking: InfoBooking!
-//	@Published var touristsInfo: [Tourist]
-	@Published var name = ""
+	@Published var touristsInfo: [Tourist] = [Tourist.getTourist()]
+	
 	@Published var hasError = false
+	
 	var isRefreshing = true
 	
+	// переменная означающая, что все поля заполнены
 	@Published var phoneNumber = ""
 	@Published var email = ""
 	
-	@Published var canSubmit = false
-	
+	// свойства валидности телефона, почты
 	@Published private var isValidPhone = false
 	@Published private var isValidEmail = false
+	
+	private let phonePredicate = NSPredicate(format: "SELF MATCHES %@", Regex.phone.rawValue)
+	private let emailPredicate = NSPredicate(format: "SELF MATCHES %@", Regex.email.rawValue)
+	
+	// свойство означающая, что все поля заполнены
+	@Published var canSubmit = false
 	
 	var phonePrompt: String? {
 		if isValidPhone == true || phoneNumber.isEmpty {
@@ -69,12 +76,10 @@ class RegisterViewModel: ObservableObject {
 	
 	private var cancellables = Set<AnyCancellable>()
 	
-	private let phonePredicate = NSPredicate(format: "SELF MATCHES %@", Regex.phone.rawValue)
-	
-	private let emailPredicate = NSPredicate(format: "SELF MATCHES %@", Regex.email.rawValue)
-	
 	init() {
 		fetchData()
+//		$touristsInfo
+//			.store(in: &cancellables)
 		
 		$phoneNumber
 			.debounce(for: 0.5, scheduler: RunLoop.main)
@@ -99,6 +104,10 @@ class RegisterViewModel: ObservableObject {
 			.store(in: &cancellables)
 	}
 	
+	func addTourist() {
+		touristsInfo.append(Tourist.getTourist())
+	}
+	 
 	func fetchMocData() {
 		infoBooking = InfoHotel.getInfoBooking()
 		isRefreshing = false

@@ -11,6 +11,7 @@ import Combine
 class HotelViewModel: ObservableObject {
 	
 	@Published var hotel: Hotel!
+	
 	@Published var hasError = false
 	var isRefreshing = true
 	

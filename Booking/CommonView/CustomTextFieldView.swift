@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CustomTextFieldView: View {
-
+	
 	private var title: String
 	@Binding private var text: String
 	private var prompt: String?
@@ -29,19 +29,18 @@ struct CustomTextFieldView: View {
 				SecureField(title, text: $text)
 					.textFieldStyle(CustomTextFieldStyle())
 			} else  {
-				VStack {
-					TextField(title, text: $text)
-						.textFieldStyle(CustomTextFieldStyle())
-				}
+				TextField(title, text: $text)
+					.textFieldStyle(CustomTextFieldStyle())
+
 			}
 			
 			if let prompt = prompt {
 				Text(prompt)
 					.foregroundColor(Colors.grayText)
 					.padding(.horizontal)
-					.offset(y: text.isEmpty ? 0 : -15)
-					.scaleEffect(text.isEmpty ? 1 : 0.8, anchor: .leading)
-					.animation(.default)
+					.offset(y: text.isEmpty ? 0 : -20)
+					.scaleEffect(text.isEmpty ? 1 : 0.7, anchor: .leading)
+					.animation(.default, value: text.isEmpty)
 			}
 		}
 	}
@@ -53,10 +52,11 @@ struct CustomTextFieldStyle: TextFieldStyle {
 			.padding(.horizontal, 16)
 			.frame(height: 52)
 			.background(Colors.backgroundColor.cornerRadius(15))
+			.baselineOffset(-4)
 			.autocorrectionDisabled()
 			.textInputAutocapitalization(.never)
-			
-			
+		
+		
 	}
 }
 
