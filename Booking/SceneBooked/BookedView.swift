@@ -20,6 +20,8 @@ struct BookedView: View {
 			Divider()
 			buttonToRoot
 		}
+		.navigationTitle("Заказ оплачен")
+		.toolbarRole(.editor)
 		.navigationBarTitleDisplayMode(.inline)
 	}
 

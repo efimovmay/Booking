@@ -18,4 +18,6 @@ enum Colors {
 	static let grayColor = Color(red: 251/256, green: 251/256, blue: 252/256)
 	// цвет синей кнопки
 	static let blueButton = Color(red: 13/256, green: 114/256, blue: 225/256)
+	// цвет textFeeld при ошибке
+	static let redTextFeeld = Color(red: 235/256, green: 87/256, blue: 87/256)
 }

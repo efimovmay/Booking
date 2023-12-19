@@ -9,16 +9,16 @@ import SwiftUI
 
 struct CustomTextFieldView: View {
 	
-	private var title: String
 	@Binding private var text: String
-	private var prompt: String?
+	private var title: String
 	private var isSecure: Bool
+	private var isValid: Bool?
 	
-	init(title: String, text: Binding<String>, prompt: String? = nil, isSecure: Bool = false) {
+	init(title: String, text: Binding<String>, isSecure: Bool = false, isValid: Bool? = true) {
 		self.title = title
 		self._text = text
-		self.prompt = prompt
 		self.isSecure = isSecure
+		self.isValid = isValid
 	}
 	
 	var body: some View {
@@ -26,22 +26,18 @@ struct CustomTextFieldView: View {
 		ZStack(alignment: .leading) {
 			
 			if isSecure {
-				SecureField(title, text: $text)
+				SecureField("", text: $text)
 					.textFieldStyle(CustomTextFieldStyle())
 			} else  {
-				TextField(title, text: $text)
+				TextField("", text: $text)
 					.textFieldStyle(CustomTextFieldStyle())
-
 			}
-			
-			if let prompt = prompt {
-				Text(prompt)
-					.foregroundColor(Colors.grayText)
-					.padding(.horizontal)
-					.offset(y: text.isEmpty ? 0 : -20)
-					.scaleEffect(text.isEmpty ? 1 : 0.7, anchor: .leading)
-					.animation(.default, value: text.isEmpty)
-			}
+			Text(title)
+				.foregroundColor(Colors.grayText)
+				.padding(.horizontal)
+				.offset(y: text.isEmpty ? 0 : -20)
+				.scaleEffect(text.isEmpty ? 1 : 0.7, anchor: .leading)
+				.animation(.default, value: text.isEmpty)
 		}
 	}
 }
@@ -51,7 +47,6 @@ struct CustomTextFieldStyle: TextFieldStyle {
 		return configuration
 			.padding(.horizontal, 16)
 			.frame(height: 52)
-			.background(Colors.backgroundColor.cornerRadius(15))
 			.baselineOffset(-4)
 			.autocorrectionDisabled()
 			.textInputAutocapitalization(.never)
@@ -62,7 +57,7 @@ struct CustomTextFieldStyle: TextFieldStyle {
 
 struct CustomTextFeldView_Previews: PreviewProvider {
 	static var previews: some View {
-		CustomTextFieldView(title: "", text: .constant("") , prompt: "Name")
+		CustomTextFieldView(title: "Name", text: .constant(""))
 			.padding(16)
 	}
 }

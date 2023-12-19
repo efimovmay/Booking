@@ -46,6 +46,7 @@
 		5BA89FD82B2DCD1C00210EE7 /* PriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA89FD72B2DCD1C00210EE7 /* PriceView.swift */; };
 		5BA89FDA2B2DE2C900210EE7 /* NextScreenButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA89FD92B2DE2C900210EE7 /* NextScreenButtonView.swift */; };
 		5BA89FDC2B2DED2C00210EE7 /* RowInfoRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA89FDB2B2DED2C00210EE7 /* RowInfoRoom.swift */; };
+		5BBB963E2B31D21B00D4B094 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB963D2B31D21B00D4B094 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +90,7 @@
 		5BA89FD72B2DCD1C00210EE7 /* PriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceView.swift; sourceTree = "<group>"; };
 		5BA89FD92B2DE2C900210EE7 /* NextScreenButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextScreenButtonView.swift; sourceTree = "<group>"; };
 		5BA89FDB2B2DED2C00210EE7 /* RowInfoRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowInfoRoom.swift; sourceTree = "<group>"; };
+		5BBB963D2B31D21B00D4B094 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 				5B317F9F2B2EF0A800D8B44D /* Extension */,
 				5BA89F952B2C4C1C00210EE7 /* Preview Content */,
 				5BA89F932B2C4C1C00210EE7 /* Assets.xcassets */,
+				5BBB963D2B31D21B00D4B094 /* NetworkManager.swift */,
 			);
 			path = Booking;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				5B317FA32B2EF10100D8B44D /* NumbersFormater.swift in Sources */,
 				5B10130D2B2F72D600F8C159 /* Tourist.swift in Sources */,
 				5B317FA12B2EF0E000D8B44D /* Regex.swift in Sources */,
+				5BBB963E2B31D21B00D4B094 /* NetworkManager.swift in Sources */,
 				5B10130B2B2F017500F8C159 /* FinalPrice.swift in Sources */,
 				5B317F9C2B2EEE4400D8B44D /* InfoBooking.swift in Sources */,
 				5BA89FB92B2C729E00210EE7 /* RegisterView.swift in Sources */,

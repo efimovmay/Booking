@@ -11,19 +11,38 @@ struct InfoPersonView: View {
 	
 	@StateObject var viewModel: RegisterViewModel
 	
+	@State var isPhoneValid: Bool = true
+	@State var isEmailValid: Bool = true
+	
 	var body: some View {
 		VStack(alignment: .leading) {
 			Text("Информация о покупателе")
 				.fontWeight(.semibold)
 				.font(.system(size: 22))
 			
-			CustomTextFieldView(title: "", text: $viewModel.phoneNumber, prompt: "Номер Телефона")
+			CustomTextFieldView(title: "Номер Телефона", text: $viewModel.phoneNumber)
+				.onSubmit {
+					isPhoneValid.toggle()
+				}
+				.background(
+					isPhoneValid
+					? Colors.backgroundColor.cornerRadius(15)
+					: Colors.redTextFeeld.opacity(0.15).cornerRadius(15)
+				)
 				.onChange(of: viewModel.phoneNumber) { newValue in
 					DispatchQueue.main.async {
 						viewModel.phoneNumber = viewModel.phoneNumber.formattedMask(text: viewModel.phoneNumber, mask: "+X (XXX) XXX-XX-XX")
 					}
 				}
-			CustomTextFieldView(title: "", text: $viewModel.email, prompt: "Почта")
+			CustomTextFieldView(title: "Почта", text: $viewModel.email)
+				.onSubmit {
+					isEmailValid.toggle()
+				}
+				.background(
+					isEmailValid
+					? Colors.backgroundColor.cornerRadius(15)
+					: Colors.redTextFeeld.opacity(0.15).cornerRadius(15)
+				)
 			text
 		}
 		.frame(maxWidth: .infinity, alignment: .leading)

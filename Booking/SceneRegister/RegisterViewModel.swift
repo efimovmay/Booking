@@ -17,7 +17,7 @@ class RegisterViewModel: ObservableObject {
 	
 	var isRefreshing = true
 	
-	// переменная означающая, что все поля заполнены
+	//
 	@Published var phoneNumber = ""
 	@Published var email = ""
 	
@@ -112,6 +112,18 @@ class RegisterViewModel: ObservableObject {
 		infoBooking = InfoHotel.getInfoBooking()
 		isRefreshing = false
 		hasError = false
+	}
+	
+	func isEmailValid() -> Bool {
+		let emailTest = NSPredicate(format: "SELF MATCHES %@", Regex.email.rawValue)
+		return emailTest.evaluate(with: email)
+	}
+	
+	var isCanSubmit: Bool {
+		if !isEmailValid() {
+			return false
+		}
+		return true
 	}
 	
 	func fetchData() {

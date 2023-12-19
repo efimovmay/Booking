@@ -19,32 +19,31 @@ struct RoomsView: View {
 				ProgressView()
 			} else {
 				ScrollView {
-					VStack (spacing: 16) {
-						ForEach(viewModel.rooms, id: \.id) { room in
-							VStack (alignment: .leading) {
-								//MARK: - Image
-								ImageStackView(images: room.imageUrls)
-								
-								//MARK: - Name
-								textName(name: room.name)
-								
-								//MARK: - Tags
-								TagsView(tags: room.peculiarities)
-								
-								//MARK: - buttonAbout
-								buttonAbout()
-								
-								//MARK: - Price
-								PriceView(room: room)
-								
-								//MARK: - Next screen button
-								NextScreenButtonView(destination: .register, title: "Выбрать номер")
-							}
-							.vStackStyle()
+					ForEach(viewModel.rooms, id: \.id) { room in
+						VStack (alignment: .leading) {
+							//MARK: - Image
+							ImageStackView(images: room.imageUrls)
+							
+							//MARK: - Name
+							textName(name: room.name)
+							
+							//MARK: - Tags
+							TagsView(tags: room.peculiarities)
+							
+							//MARK: - buttonAbout
+							buttonAbout()
+							
+							//MARK: - Price
+							PriceView(room: room)
+							
+							//MARK: - Next screen button
+							NextScreenButtonView(destination: .register, title: "Выбрать номер")
 						}
+						.vStackStyle()
 					}
+					
 				}
-				.scrollViewStyle(title: navigationTitle)
+				.scrollViewStyle(title: "navigationTitle")
 			}
 		}
 		.alert("Ошибка загрузки данных", isPresented: $viewModel.hasError) {
@@ -83,6 +82,7 @@ struct RoomsView: View {
 extension ScrollView {
 	func scrollViewStyle(title: String) -> some View {
 		self
+			.toolbarRole(.editor)
 			.background(Colors.backgroundColor)
 			.navigationBarTitleDisplayMode(.inline)
 			.navigationTitle(title)

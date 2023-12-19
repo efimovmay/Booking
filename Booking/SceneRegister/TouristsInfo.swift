@@ -10,11 +10,10 @@ import SwiftUI
 struct TouristsInfo: View {
 	
 	@StateObject var viewModel: RegisterViewModel
-	@State var name: String = ""
-	@State var active: Bool = false
-	@State var t: [Tourist] = []
 	
-	
+	@State var isMaxTourist: Bool = false
+	@State var isTextFeeld: Bool = false
+
     var body: some View {
 		ForEach($viewModel.touristsInfo.indices, id: \.self) { index in
 				VStack {
@@ -40,19 +39,47 @@ struct TouristsInfo: View {
 						)
 					}
 					if viewModel.touristsInfo[index].isActive {
-						CustomTextFieldView(title: "", text: $viewModel.touristsInfo[index].name, prompt: "Имя")
-						CustomTextFieldView(title: "", text: $viewModel.touristsInfo[index].surname, prompt: "Фамилия")
-						CustomTextFieldView(title: "", text: $viewModel.touristsInfo[index].dateOfBirth, prompt: "Дата рождения")
-						CustomTextFieldView(title: "", text: $viewModel.touristsInfo[index].citizenship, prompt: "Гражданство")
-						CustomTextFieldView(title: "", text: $viewModel.touristsInfo[index].numberPass, prompt: "Номер загран паспорта")
-						CustomTextFieldView(title: "", text: $viewModel.touristsInfo[index].validityPass, prompt: "Срок действия загран паспорта")
+						CustomTextFieldView(
+							title: "Имя",
+							text: $viewModel.touristsInfo[index].name
+						)
+						.background(Colors.backgroundColor.cornerRadius(15))
+						
+						CustomTextFieldView(
+							title: "Фамилия",
+							text: $viewModel.touristsInfo[index].surname
+						)
+						.background(Colors.backgroundColor.cornerRadius(15))
+						
+						CustomTextFieldView(
+							title: "Дата рождения",
+							text: $viewModel.touristsInfo[index].dateOfBirth
+						)
+						.background(Colors.backgroundColor.cornerRadius(15))
+						
+						CustomTextFieldView(
+							title: "Гражданство",
+							text: $viewModel.touristsInfo[index].citizenship
+						)
+						.background(Colors.backgroundColor.cornerRadius(15))
+						
+						CustomTextFieldView(
+							title: "Номер загран паспорта",
+							text: $viewModel.touristsInfo[index].numberPass
+						)
+						.background(Colors.backgroundColor.cornerRadius(15))
+						
+						CustomTextFieldView(
+							title: "Срок действия загран паспорта",
+							text: $viewModel.touristsInfo[index].validityPass
+						)
+						.background(Colors.backgroundColor.cornerRadius(15))
 					}
 				}
 				.tileStyle()
 				.animation(.default, value: viewModel.touristsInfo[index].isActive )
 		}
 
-		
 		// MARK: - Добавить туриста
 		HStack {
 			HStack {
@@ -60,8 +87,11 @@ struct TouristsInfo: View {
 				Spacer()
 				Button(
 					action: {
-						viewModel.addTourist()
-						t.append(Tourist.getTourist())
+						if viewModel.touristsInfo.count <= 2 {
+							viewModel.addTourist()
+						} else {
+							isMaxTourist.toggle()
+						}
 					}, label: {
 						Image(systemName: "plus.app.fill")
 							.resizable()
@@ -69,6 +99,11 @@ struct TouristsInfo: View {
 							.foregroundColor(Colors.blueButton)
 					}
 				)
+			}
+			.alert("Ошибка", isPresented: $isMaxTourist) {
+				Button("ОК") { isMaxTourist.toggle() }
+			} message: {
+				Text("Максимальное число туристов")
 			}
 		}
 		.tileStyle()
