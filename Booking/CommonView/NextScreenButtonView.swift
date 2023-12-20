@@ -20,14 +20,14 @@ struct NextScreenButtonView: View {
 				coordinator.push(destination)
 			} label: {
 				Text(title)
-					.styleButtonText()
+					.styleNextScreenButtonText()
 			}
 			.padding(.horizontal, 16.0)
 	}
 }
 
 extension Text {
-	func styleButtonText() -> some View {
+	func styleNextScreenButtonText() -> some View {
 		self
 			.fontWeight(.semibold)
 			.frame(maxWidth: .infinity)

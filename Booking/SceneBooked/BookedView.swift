@@ -10,6 +10,7 @@ import SwiftUI
 struct BookedView: View {
 	
 	@EnvironmentObject private var coordinator: Coordinator
+	let numberOrder: Int = Int.random(in: 0...200000)
 	
 	var body: some View {
 		VStack {
@@ -30,7 +31,7 @@ struct BookedView: View {
 			coordinator.popToRoot()
 		} label: {
 			Text("Супер!")
-				.styleButtonText()
+				.styleNextScreenButtonText()
 		}
 		.padding(.horizontal, 16.0)
 		.padding(.bottom, 16.0)
@@ -55,7 +56,7 @@ struct BookedView: View {
 	}
 	
 	private var textMain: some View {
-		Text("Подтверждение заказа №104893 может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.")
+		Text("Подтверждение заказа № \(numberOrder) может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.")
 			.foregroundColor(Color.gray)
 			.multilineTextAlignment(.center)
 			.padding([.top, .leading, .trailing], 16.0)

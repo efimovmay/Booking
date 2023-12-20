@@ -8,7 +8,7 @@
 import Foundation
 
 extension Date {
-	var justDate: String{
+	var justDate: String {
 		let dateFormatter = DateFormatter()
 		dateFormatter.timeStyle = .none
 		dateFormatter.locale = Locale(identifier: "ru_RU")

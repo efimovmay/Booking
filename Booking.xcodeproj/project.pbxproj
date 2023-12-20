@@ -17,7 +17,7 @@
 		5B317F982B2EECFD00D8B44D /* InfoPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B317F972B2EECFD00D8B44D /* InfoPersonView.swift */; };
 		5B317F9A2B2EED2D00D8B44D /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B317F992B2EED2D00D8B44D /* CustomTextFieldView.swift */; };
 		5B317F9C2B2EEE4400D8B44D /* InfoBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B317F9B2B2EEE4400D8B44D /* InfoBooking.swift */; };
-		5B317F9E2B2EF09600D8B44D /* StringFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B317F9D2B2EF09600D8B44D /* StringFormater.swift */; };
+		5B317F9E2B2EF09600D8B44D /* PhoneNumberFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B317F9D2B2EF09600D8B44D /* PhoneNumberFormater.swift */; };
 		5B317FA12B2EF0E000D8B44D /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B317FA02B2EF0E000D8B44D /* Regex.swift */; };
 		5B317FA32B2EF10100D8B44D /* NumbersFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B317FA22B2EF10100D8B44D /* NumbersFormater.swift */; };
 		5B317FA52B2EFAA500D8B44D /* DateFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B317FA42B2EFAA500D8B44D /* DateFormater.swift */; };
@@ -60,7 +60,7 @@
 		5B317F972B2EECFD00D8B44D /* InfoPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPersonView.swift; sourceTree = "<group>"; };
 		5B317F992B2EED2D00D8B44D /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
 		5B317F9B2B2EEE4400D8B44D /* InfoBooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBooking.swift; sourceTree = "<group>"; };
-		5B317F9D2B2EF09600D8B44D /* StringFormater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFormater.swift; sourceTree = "<group>"; };
+		5B317F9D2B2EF09600D8B44D /* PhoneNumberFormater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberFormater.swift; sourceTree = "<group>"; };
 		5B317FA02B2EF0E000D8B44D /* Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		5B317FA22B2EF10100D8B44D /* NumbersFormater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersFormater.swift; sourceTree = "<group>"; };
 		5B317FA42B2EFAA500D8B44D /* DateFormater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormater.swift; sourceTree = "<group>"; };
@@ -107,11 +107,10 @@
 		5B317F9F2B2EF0A800D8B44D /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				5B317F9D2B2EF09600D8B44D /* StringFormater.swift */,
+				5B317F9D2B2EF09600D8B44D /* PhoneNumberFormater.swift */,
 				5B317FA22B2EF10100D8B44D /* NumbersFormater.swift */,
 				5B317FA42B2EFAA500D8B44D /* DateFormater.swift */,
 				5B317FA02B2EF0E000D8B44D /* Regex.swift */,
-				5B1013102B2F784700F8C159 /* VStackExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -162,6 +161,7 @@
 		5BA89F9F2B2C4CBD00210EE7 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
+				5B1013102B2F784700F8C159 /* VStackExtension.swift */,
 				5BA89F9D2B2C4C5000210EE7 /* Sizes.swift */,
 				5BA89FA02B2C4CF500210EE7 /* Colors.swift */,
 			);
@@ -336,7 +336,7 @@
 				5BA89FD12B2C7FA300210EE7 /* AboutButtonView.swift in Sources */,
 				5BA89FA12B2C4CF500210EE7 /* Colors.swift in Sources */,
 				5BA89FB62B2C726F00210EE7 /* BookedView.swift in Sources */,
-				5B317F9E2B2EF09600D8B44D /* StringFormater.swift in Sources */,
+				5B317F9E2B2EF09600D8B44D /* PhoneNumberFormater.swift in Sources */,
 				5BA89FC92B2C7C6D00210EE7 /* StarRatingView.swift in Sources */,
 				5BA89FBD2B2C799F00210EE7 /* HotelViewModel.swift in Sources */,
 				5BA89FD82B2DCD1C00210EE7 /* PriceView.swift in Sources */,

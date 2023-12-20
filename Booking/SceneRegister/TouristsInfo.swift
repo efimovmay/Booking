@@ -43,37 +43,61 @@ struct TouristsInfo: View {
 							title: "Имя",
 							text: $viewModel.touristsInfo[index].name
 						)
-						.background(Colors.backgroundColor.cornerRadius(15))
+						.background(
+							viewModel.fieldsCheckingTourist[index].nameIsEmpty
+							? Colors.backgroundColor.cornerRadius(15)
+							: Colors.redTextFeeld.opacity(0.15).cornerRadius(15)
+						)
 						
 						CustomTextFieldView(
 							title: "Фамилия",
 							text: $viewModel.touristsInfo[index].surname
 						)
-						.background(Colors.backgroundColor.cornerRadius(15))
+						.background(
+							viewModel.fieldsCheckingTourist[index].surnameIsEmpty
+							? Colors.backgroundColor.cornerRadius(15)
+							: Colors.redTextFeeld.opacity(0.15).cornerRadius(15)
+						)
 						
 						CustomTextFieldView(
 							title: "Дата рождения",
 							text: $viewModel.touristsInfo[index].dateOfBirth
 						)
-						.background(Colors.backgroundColor.cornerRadius(15))
+						.background(
+							viewModel.fieldsCheckingTourist[index].dateOfBirthIsEmpty
+							? Colors.backgroundColor.cornerRadius(15)
+							: Colors.redTextFeeld.opacity(0.15).cornerRadius(15)
+						)
 						
 						CustomTextFieldView(
 							title: "Гражданство",
 							text: $viewModel.touristsInfo[index].citizenship
 						)
-						.background(Colors.backgroundColor.cornerRadius(15))
+						.background(
+							viewModel.fieldsCheckingTourist[index].citizenshipIsEmpty
+							? Colors.backgroundColor.cornerRadius(15)
+							: Colors.redTextFeeld.opacity(0.15).cornerRadius(15)
+						)
 						
 						CustomTextFieldView(
 							title: "Номер загран паспорта",
 							text: $viewModel.touristsInfo[index].numberPass
 						)
-						.background(Colors.backgroundColor.cornerRadius(15))
+						.background(
+							viewModel.fieldsCheckingTourist[index].numberPassIsEmpty
+							? Colors.backgroundColor.cornerRadius(15)
+							: Colors.redTextFeeld.opacity(0.15).cornerRadius(15)
+						)
 						
 						CustomTextFieldView(
 							title: "Срок действия загран паспорта",
 							text: $viewModel.touristsInfo[index].validityPass
 						)
-						.background(Colors.backgroundColor.cornerRadius(15))
+						.background(
+							viewModel.fieldsCheckingTourist[index].validityPassIsEmpty
+							? Colors.backgroundColor.cornerRadius(15)
+							: Colors.redTextFeeld.opacity(0.15).cornerRadius(15)
+						)
 					}
 				}
 				.tileStyle()
@@ -108,6 +132,7 @@ struct TouristsInfo: View {
 		}
 		.tileStyle()
     }
+	
 }
 
 #Preview {

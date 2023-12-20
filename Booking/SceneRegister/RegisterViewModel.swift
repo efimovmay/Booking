@@ -11,41 +11,26 @@ import Combine
 class RegisterViewModel: ObservableObject {
 	
 	@Published var infoBooking: InfoBooking!
+	
 	@Published var touristsInfo: [Tourist] = [Tourist.getTourist()]
+	@Published var fieldsCheckingTourist = [FieldsCheckingTourist()]
 	
-	@Published var hasError = false
+	// ошибка загрузки данных
+	@Published var hasError: Bool = false
 	
-	var isRefreshing = true
+	// model обновляется
+	@Published var isRefreshing: Bool = true
 	
-	//
-	@Published var phoneNumber = ""
-	@Published var email = ""
+	// свойство - все поля заполнены
+	@Published var canSubmit: Bool = false
 	
-	// свойства валидности телефона, почты
-	@Published private var isValidPhone = false
-	@Published private var isValidEmail = false
+	@Published var phoneNumber: String = ""
+	@Published var email: String = ""
 	
-	private let phonePredicate = NSPredicate(format: "SELF MATCHES %@", Regex.phone.rawValue)
-	private let emailPredicate = NSPredicate(format: "SELF MATCHES %@", Regex.email.rawValue)
+	@Published var isPhoneValid: Bool = true
+	@Published var isEmailValid: Bool = true
 	
-	// свойство означающая, что все поля заполнены
-	@Published var canSubmit = false
-	
-	var phonePrompt: String? {
-		if isValidPhone == true || phoneNumber.isEmpty {
-			return nil
-		} else {
-			return "Enter full phone number"
-		}
-	}
-	var emailPromt: String? {
-		if isValidEmail == true || email.isEmpty {
-			return nil
-		} else {
-			return "введите корректную почту"
-		}
-	}
-	
+	// строковые свойства секции цен
 	var serviceChargeString: String {
 		"\(infoBooking.serviceCharge) ₽"
 	}
@@ -59,14 +44,11 @@ class RegisterViewModel: ObservableObject {
 		"\(infoBooking.tourPrice + infoBooking.fuelCharge + infoBooking.serviceCharge) ₽"
 	}
 	
-	var buttonNextScreenTitle: String {
+	var nameNextScteenButton: String {
 		"Оплатить \(finalPriceString)"
 	}
 	
-	var nameButton: String {
-		"Оплатить \(infoBooking.tourPrice.formattedWithSeparator) ₽"
-	}
-	
+	// строковые свойства секции информации
 	var dataBooking: String {
 		"\(infoBooking.tourDateStart)-\(infoBooking.tourDateStop)"
 	}
@@ -78,52 +60,78 @@ class RegisterViewModel: ObservableObject {
 	
 	init() {
 		fetchData()
-//		$touristsInfo
-//			.store(in: &cancellables)
-		
-		$phoneNumber
-			.debounce(for: 0.5, scheduler: RunLoop.main)
-			.map { phone in
-				return self.phonePredicate.evaluate(with: phone)
-			}
-			.assign(to: \.isValidPhone, on: self)
-			.store(in: &cancellables)
-		$email
-			.debounce(for: 0.5, scheduler: RunLoop.main)
-			.map { email in
-				return self.emailPredicate.evaluate(with: email)
-			}
-			.assign(to: \.isValidEmail, on: self)
-			.store(in: &cancellables)
-		
-		Publishers.CombineLatest($isValidEmail, $isValidPhone)
-			.map { first, second in
-				return (first && second)
-			}
-			.assign(to: \.canSubmit, on: self)
-			.store(in: &cancellables)
 	}
 	
-	func addTourist() {
-		touristsInfo.append(Tourist.getTourist())
-	}
-	 
-	func fetchMocData() {
-		infoBooking = InfoHotel.getInfoBooking()
-		isRefreshing = false
-		hasError = false
+	func checkPhoneValid() -> Bool {
+		let phoneTest = NSPredicate(format: "SELF MATCHES %@", Regex.phone.rawValue)
+		return phoneTest.evaluate(with: phoneNumber)
 	}
 	
-	func isEmailValid() -> Bool {
+	func checkEmailValid() -> Bool {
 		let emailTest = NSPredicate(format: "SELF MATCHES %@", Regex.email.rawValue)
 		return emailTest.evaluate(with: email)
 	}
 	
-	var isCanSubmit: Bool {
-		if !isEmailValid() {
-			return false
+	func checkEmptyTextField() {
+		canSubmit = true
+		
+		isPhoneValid = !checkPhoneValid() ? false : true
+		isEmailValid = !checkEmailValid() ? false : true
+		
+		if !checkPhoneValid() || !checkEmailValid() {
+			canSubmit = false
 		}
-		return true
+		fieldsCheckingTourist.indices.forEach { index in
+			fieldsCheckingTourist[index].nameIsEmpty = touristsInfo[index].name.isEmpty ? false : true
+			fieldsCheckingTourist[index].surnameIsEmpty = touristsInfo[index].surname.isEmpty ? false : true
+			fieldsCheckingTourist[index].dateOfBirthIsEmpty = touristsInfo[index].dateOfBirth.isEmpty ? false : true
+			fieldsCheckingTourist[index].citizenshipIsEmpty = touristsInfo[index].citizenship.isEmpty ? false : true
+			fieldsCheckingTourist[index].numberPassIsEmpty = touristsInfo[index].numberPass.isEmpty ? false : true
+			fieldsCheckingTourist[index].validityPassIsEmpty = touristsInfo[index].validityPass.isEmpty ? false : true
+			
+			if !fieldsCheckingTourist[index].nameIsEmpty ||
+				!fieldsCheckingTourist[index].surnameIsEmpty ||
+				!fieldsCheckingTourist[index].numberPassIsEmpty ||
+				!fieldsCheckingTourist[index].citizenshipIsEmpty ||
+				!fieldsCheckingTourist[index].validityPassIsEmpty ||
+				!fieldsCheckingTourist[index].dateOfBirthIsEmpty {
+				canSubmit = false
+			}
+		}
+	}
+	
+	func checkEmptyTouristTextField() -> Bool {
+		var notEmpty = true
+		fieldsCheckingTourist.indices.forEach { index in
+			fieldsCheckingTourist[index].nameIsEmpty = touristsInfo[index].name.isEmpty ? false : true
+			fieldsCheckingTourist[index].surnameIsEmpty = touristsInfo[index].surname.isEmpty ? false : true
+			fieldsCheckingTourist[index].dateOfBirthIsEmpty = touristsInfo[index].dateOfBirth.isEmpty ? false : true
+			fieldsCheckingTourist[index].citizenshipIsEmpty = touristsInfo[index].citizenship.isEmpty ? false : true
+			fieldsCheckingTourist[index].numberPassIsEmpty = touristsInfo[index].numberPass.isEmpty ? false : true
+			fieldsCheckingTourist[index].validityPassIsEmpty = touristsInfo[index].validityPass.isEmpty ? false : true
+			
+			if fieldsCheckingTourist[index].nameIsEmpty ||
+				fieldsCheckingTourist[index].surnameIsEmpty ||
+				fieldsCheckingTourist[index].numberPassIsEmpty ||
+				fieldsCheckingTourist[index].citizenshipIsEmpty ||
+				fieldsCheckingTourist[index].validityPassIsEmpty ||
+				fieldsCheckingTourist[index].dateOfBirthIsEmpty {
+				notEmpty = false
+			}
+			
+		}
+		return notEmpty
+	}
+	
+	func addTourist() {
+		touristsInfo.append(Tourist.getTourist())
+		fieldsCheckingTourist.append(FieldsCheckingTourist())
+	}
+	
+	func fetchMocData() {
+		infoBooking = InfoHotel.getInfoBooking()
+		isRefreshing = false
+		hasError = false
 	}
 	
 	func fetchData() {

@@ -31,3 +31,12 @@ extension Tourist {
 		)
 	}
 }
+
+struct FieldsCheckingTourist {
+	var nameIsEmpty: Bool = true
+	var surnameIsEmpty: Bool = true
+	var dateOfBirthIsEmpty: Bool = true
+	var citizenshipIsEmpty: Bool = true
+	var numberPassIsEmpty: Bool = true
+	var validityPassIsEmpty: Bool = true
+}

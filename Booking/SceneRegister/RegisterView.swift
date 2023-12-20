@@ -10,6 +10,8 @@ import SwiftUI
 struct RegisterView: View {
 	
 	@StateObject private var viewModel = RegisterViewModel()
+	@EnvironmentObject private var coordinator: Coordinator
+	@State private var isShowAlert: Bool = false
 	
 	var body: some View {
 		ScrollView {
@@ -31,7 +33,7 @@ struct RegisterView: View {
 					
 					//MARK: - Блок с итоговой ценой
 					FinalPriceView(viewModel: viewModel)
-					
+
 					//MARK: - Блок с кнопкой следующего экрана
 					NextScreenView()
 				}
@@ -45,16 +47,30 @@ struct RegisterView: View {
 		} message: {
 			Text("Отобразить с мок данными?")
 		}
+		
+		.alert("Ошибка", isPresented: $isShowAlert) {
+			Button("ОК") { }
+		} message: {
+			Text("Проверте выделенные поля")
+		}
 	}
 	
 	private func NextScreenView() -> some View {
 		ZStack {
 			Rectangle()
 				.foregroundColor(.white)
-			NextScreenButtonView(destination: .booked, title: viewModel.buttonNextScreenTitle)
-				.padding(.top, 16.0)
-				.padding(.bottom, 25)
-			
+			Button {
+				viewModel.checkEmptyTextField()
+				if viewModel.canSubmit {
+					coordinator.push(.booked)
+				} else {
+					isShowAlert.toggle()
+				}
+			} label: {
+				Text(viewModel.nameNextScteenButton)
+					.styleNextScreenButtonText()
+			}
+			.padding(.horizontal, 16.0)
 		}
 	}
 }

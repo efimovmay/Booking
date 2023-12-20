@@ -11,8 +11,7 @@ struct InfoPersonView: View {
 	
 	@StateObject var viewModel: RegisterViewModel
 	
-	@State var isPhoneValid: Bool = true
-	@State var isEmailValid: Bool = true
+
 	
 	var body: some View {
 		VStack(alignment: .leading) {
@@ -21,11 +20,8 @@ struct InfoPersonView: View {
 				.font(.system(size: 22))
 			
 			CustomTextFieldView(title: "Номер Телефона", text: $viewModel.phoneNumber)
-				.onSubmit {
-					isPhoneValid.toggle()
-				}
 				.background(
-					isPhoneValid
+					viewModel.isPhoneValid
 					? Colors.backgroundColor.cornerRadius(15)
 					: Colors.redTextFeeld.opacity(0.15).cornerRadius(15)
 				)
@@ -35,11 +31,8 @@ struct InfoPersonView: View {
 					}
 				}
 			CustomTextFieldView(title: "Почта", text: $viewModel.email)
-				.onSubmit {
-					isEmailValid.toggle()
-				}
 				.background(
-					isEmailValid
+					viewModel.isEmailValid
 					? Colors.backgroundColor.cornerRadius(15)
 					: Colors.redTextFeeld.opacity(0.15).cornerRadius(15)
 				)
