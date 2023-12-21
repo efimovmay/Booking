@@ -39,7 +39,7 @@ struct RoomsView: View {
 							//MARK: - Next screen button
 							NextScreenButtonView(destination: .register, title: "Выбрать номер")
 						}
-						.vStackStyle()
+						.tileStyle()
 					}
 				}
 				.scrollViewStyle()
@@ -77,26 +77,6 @@ struct RoomsView: View {
 		Text(name)
 			.font(.system(size: 22))
 			.fontWeight(.semibold)
-	}
-}
-
-extension ScrollView {
-	func scrollViewStyle() -> some View {
-		self
-			.toolbarRole(.editor)
-			.background(Colors.backgroundColor)
-			.navigationBarTitleDisplayMode(.inline)
-			.toolbarBackground(.visible, for: .navigationBar)
-	}
-}
-
-private extension VStack {
-	func vStackStyle() -> some View {
-		self
-			.padding(.horizontal, 16)
-			.padding(.vertical, 16)
-			.background(.white)
-			.clipShape(RoundedRectangle(cornerRadius: 15))
 	}
 }
 

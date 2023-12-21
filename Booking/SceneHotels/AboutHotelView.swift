@@ -24,10 +24,7 @@ struct AboutHotelView: View {
 			//MARK: - Удобства, Что включено...
 			AboutButtonView()
 		}
-		.padding(.vertical, 16)
-		.padding(.horizontal, 16)
-		.background(.white)
-		.clipShape(RoundedRectangle(cornerRadius: 15))
+		.tileStyle()
 	}
 	
 	private var header: some View {

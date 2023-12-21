@@ -31,9 +31,7 @@ struct InfoHotel: View {
 			// MARK: - Price
 			price(minPrice: viewModel.minimalPriceText, priceForIt: viewModel.hotel.priceForIt)
 		}
-		.padding(.horizontal, 16)
-		.background(.white)
-		.clipShape(RoundedRectangle(cornerRadius: 15))
+		.tileStyle()
 		
 	}
 	

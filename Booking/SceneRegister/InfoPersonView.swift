@@ -38,11 +38,7 @@ struct InfoPersonView: View {
 				)
 			text
 		}
-		.frame(maxWidth: .infinity, alignment: .leading)
-		.padding(.horizontal, 16)
-		.padding(.vertical, 16)
-		.background(.white)
-		.clipShape(RoundedRectangle(cornerRadius: 15))
+		.tileStyle()
 	}
 	var text: some View {
 		Text("Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту")

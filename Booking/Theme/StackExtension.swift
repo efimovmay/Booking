@@ -29,3 +29,13 @@ extension HStack {
 	}
 }
 
+extension ScrollView {
+	func scrollViewStyle() -> some View {
+		self
+			.toolbarRole(.editor)
+			.background(Colors.backgroundColor)
+			.navigationBarTitleDisplayMode(.inline)
+			.toolbarBackground(.visible, for: .navigationBar)
+	}
+}
+
