@@ -115,6 +115,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		5B69C1092B34561A0078CA91 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				5BBB963D2B31D21B00D4B094 /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		5BA89F832B2C4C1B00210EE7 = {
 			isa = PBXGroup;
 			children = (
@@ -134,18 +142,18 @@
 		5BA89F8E2B2C4C1B00210EE7 /* Booking */ = {
 			isa = PBXGroup;
 			children = (
+				5BA89FA22B2C4D7800210EE7 /* Coordinator */,
 				5BA89FAE2B2C71FE00210EE7 /* SceneHotels */,
 				5BA89FB12B2C723D00210EE7 /* SceneRooms */,
 				5BA89FB72B2C727300210EE7 /* SceneRegister */,
 				5BA89FB42B2C725900210EE7 /* SceneBooked */,
-				5BA89FA22B2C4D7800210EE7 /* Coordinator */,
+				5B69C1092B34561A0078CA91 /* Network */,
 				5BA89FBE2B2C79C700210EE7 /* Models */,
 				5BA89F9F2B2C4CBD00210EE7 /* Theme */,
-				5BA89FC52B2C7C1700210EE7 /* CommonView */,
+				5BA89FC52B2C7C1700210EE7 /* CommonViews */,
 				5B317F9F2B2EF0A800D8B44D /* Extension */,
 				5BA89F952B2C4C1C00210EE7 /* Preview Content */,
 				5BA89F932B2C4C1C00210EE7 /* Assets.xcassets */,
-				5BBB963D2B31D21B00D4B094 /* NetworkManager.swift */,
 			);
 			path = Booking;
 			sourceTree = "<group>";
@@ -234,7 +242,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		5BA89FC52B2C7C1700210EE7 /* CommonView */ = {
+		5BA89FC52B2C7C1700210EE7 /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
 				5BA89FD92B2DE2C900210EE7 /* NextScreenButtonView.swift */,
@@ -244,7 +252,7 @@
 				5BA89FCE2B2C7F3A00210EE7 /* TagsView.swift */,
 				5B317F992B2EED2D00D8B44D /* CustomTextFieldView.swift */,
 			);
-			path = CommonView;
+			path = CommonViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

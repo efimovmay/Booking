@@ -30,40 +30,23 @@ class HotelViewModel: ObservableObject {
 		isRefreshing = false
 		hasError = false
 	}
-
+	
 	func fetchData() {
-		guard let url = URL(string: "https://run.mocky.io/v3/d144777c-a67f-4e35-867a-cacc3b827473") else { return }
-		
-		isRefreshing = true
-		hasError = false
-		
-		let decoder = JSONDecoder()
-		decoder.keyDecodingStrategy = .convertFromSnakeCase
-		
-		URLSession.shared.dataTaskPublisher(for: url)
-			.receive(on: DispatchQueue.main)
-			.tryMap(hanleOutput)
-			.decode(type: Hotel.self, decoder: decoder)
+		NetworkManger.shared.fetchData(url: link.hotelData.rawValue, type: Hotel.self)
 			.sink { completion in
 				switch completion {
-				case .finished:
-					self.isRefreshing = false
-				case .failure(let error):
-					print("Error: \(error)")
+				case .failure(let err):
+					print("Error is \(err.localizedDescription)")
 					self.hasError = true
+				case .finished:
+					print("Finished")
+					self.isRefreshing = false
 				}
-			} receiveValue: { [weak self] hotel in
-				self?.hotel = hotel
-				self?.isRefreshing = false
 			}
-			.store(in: &cancellables)
+	receiveValue: { [weak self] data in
+		self?.hotel = data
+		self?.isRefreshing = false
 	}
-	
-	private func hanleOutput(output: URLSession.DataTaskPublisher.Output) throws -> Data {
-		guard let response = output.response as? HTTPURLResponse,
-			  response.statusCode >= 200 && response.statusCode < 300 else {
-			throw URLError(.badServerResponse)
-		}
-		return output.data
+	.store(in: &cancellables)
 	}
 }

@@ -30,6 +30,8 @@ class RegisterViewModel: ObservableObject {
 	@Published var isPhoneValid: Bool = true
 	@Published var isEmailValid: Bool = true
 	
+	let nameSectionTourict = ["Первый турист", "Второй турист", "Третий турист"]
+	
 	// строковые свойства секции цен
 	var serviceChargeString: String {
 		"\(infoBooking.serviceCharge) ₽"
@@ -99,30 +101,7 @@ class RegisterViewModel: ObservableObject {
 			}
 		}
 	}
-	
-	func checkEmptyTouristTextField() -> Bool {
-		var notEmpty = true
-		fieldsCheckingTourist.indices.forEach { index in
-			fieldsCheckingTourist[index].nameIsEmpty = touristsInfo[index].name.isEmpty ? false : true
-			fieldsCheckingTourist[index].surnameIsEmpty = touristsInfo[index].surname.isEmpty ? false : true
-			fieldsCheckingTourist[index].dateOfBirthIsEmpty = touristsInfo[index].dateOfBirth.isEmpty ? false : true
-			fieldsCheckingTourist[index].citizenshipIsEmpty = touristsInfo[index].citizenship.isEmpty ? false : true
-			fieldsCheckingTourist[index].numberPassIsEmpty = touristsInfo[index].numberPass.isEmpty ? false : true
-			fieldsCheckingTourist[index].validityPassIsEmpty = touristsInfo[index].validityPass.isEmpty ? false : true
-			
-			if fieldsCheckingTourist[index].nameIsEmpty ||
-				fieldsCheckingTourist[index].surnameIsEmpty ||
-				fieldsCheckingTourist[index].numberPassIsEmpty ||
-				fieldsCheckingTourist[index].citizenshipIsEmpty ||
-				fieldsCheckingTourist[index].validityPassIsEmpty ||
-				fieldsCheckingTourist[index].dateOfBirthIsEmpty {
-				notEmpty = false
-			}
-			
-		}
-		return notEmpty
-	}
-	
+
 	func addTourist() {
 		touristsInfo.append(Tourist.getTourist())
 		fieldsCheckingTourist.append(FieldsCheckingTourist())
@@ -135,38 +114,22 @@ class RegisterViewModel: ObservableObject {
 	}
 	
 	func fetchData() {
-		guard let url = URL(string: "https://run.mocky.io/v3/63866c74-d593-432c-af8e-f279d1a8d2ff") else { return }
-		
-		isRefreshing = true
-		hasError = false
-		
-		let decoder = JSONDecoder()
-		decoder.keyDecodingStrategy = .convertFromSnakeCase
-		URLSession.shared.dataTaskPublisher(for: url)
-			.receive(on: DispatchQueue.main)
-			.tryMap(hanleOutput)
-			.decode(type: InfoBooking.self, decoder: decoder)
-			.sink { (completion) in
+		NetworkManger.shared.fetchData(url: link.registerData.rawValue, type: InfoBooking.self)
+			.sink { completion in
 				switch completion {
-				case .finished:
-					self.isRefreshing = false
-				case .failure(let error):
-					print("Error: \(error)")
+				case .failure(let err):
+					print("Error is \(err.localizedDescription)")
 					self.hasError = true
+				case .finished:
+					print("Finished")
 					self.isRefreshing = false
 				}
-			} receiveValue: { [weak self] info in
-				self?.infoBooking = info
 			}
-			.store(in: &cancellables)
+	receiveValue: { [weak self] data in
+		self?.infoBooking = data
+		self?.isRefreshing = false
 	}
-	
-	func hanleOutput(output: URLSession.DataTaskPublisher.Output) throws -> Data {
-		guard let response = output.response as? HTTPURLResponse,
-			  response.statusCode >= 200 && response.statusCode < 300 else {
-			throw URLError(.badServerResponse)
-		}
-		return output.data
+	.store(in: &cancellables)
 	}
 }
 

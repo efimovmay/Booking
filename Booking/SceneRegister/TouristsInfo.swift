@@ -18,7 +18,7 @@ struct TouristsInfo: View {
 		ForEach($viewModel.touristsInfo.indices, id: \.self) { index in
 				VStack {
 					HStack {
-						Text("Первый турист")
+						Text(viewModel.nameSectionTourict[index])
 						Spacer()
 						Button(
 							action: {
