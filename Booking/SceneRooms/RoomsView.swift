@@ -41,11 +41,12 @@ struct RoomsView: View {
 						}
 						.vStackStyle()
 					}
-					
 				}
-				.scrollViewStyle(title: "navigationTitle")
+				.scrollViewStyle()
 			}
 		}
+		.navigationTitle("Номера")
+		
 		.alert("Ошибка загрузки данных", isPresented: $viewModel.hasError) {
 			Button("Да") { viewModel.fetchMocData() }
 			Button("Повторить") { viewModel.fetchData() }
@@ -80,12 +81,11 @@ struct RoomsView: View {
 }
 
 extension ScrollView {
-	func scrollViewStyle(title: String) -> some View {
+	func scrollViewStyle() -> some View {
 		self
 			.toolbarRole(.editor)
 			.background(Colors.backgroundColor)
 			.navigationBarTitleDisplayMode(.inline)
-			.navigationTitle(title)
 			.toolbarBackground(.visible, for: .navigationBar)
 	}
 }

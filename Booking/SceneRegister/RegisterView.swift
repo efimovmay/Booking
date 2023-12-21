@@ -14,32 +14,35 @@ struct RegisterView: View {
 	@State private var isShowAlert: Bool = false
 	
 	var body: some View {
-		ScrollView {
+		ZStack {
 			if viewModel.isRefreshing {
 				ProgressView()
 			} else {
-				VStack (spacing: 10) {
-					//MARK: - Блок с отелем
-					HeadSection(viewModel: viewModel)
-					
-					//MARK: - Блок с данными брони
-					InfoBookingView(viewModel: viewModel)
-					
-					//MARK: - Блок с информацией о покупателе
-					InfoPersonView(viewModel: viewModel)
-					
-					//MARK: - Блок с информацией о туристах
-					TouristsInfo(viewModel: viewModel)
-					
-					//MARK: - Блок с итоговой ценой
-					FinalPriceView(viewModel: viewModel)
-
-					//MARK: - Блок с кнопкой следующего экрана
-					NextScreenView()
+				ScrollView {
+					VStack (spacing: 10) {
+						//MARK: - Блок с отелем
+						HeadSection(viewModel: viewModel)
+						
+						//MARK: - Блок с данными брони
+						InfoBookingView(viewModel: viewModel)
+						
+						//MARK: - Блок с информацией о покупателе
+						InfoPersonView(viewModel: viewModel)
+						
+						//MARK: - Блок с информацией о туристах
+						TouristsInfo(viewModel: viewModel)
+						
+						//MARK: - Блок с итоговой ценой
+						FinalPriceView(viewModel: viewModel)
+						
+						//MARK: - Блок с кнопкой следующего экрана
+						NextScreenView()
+					}
 				}
+				.scrollViewStyle()
 			}
 		}
-		.scrollViewStyle(title: "Бронирование")
+		.navigationTitle("Бронирование")
 		
 		.alert("Ошибка загрузки данных", isPresented: $viewModel.hasError) {
 			Button("Да") { viewModel.fetchMocData() }

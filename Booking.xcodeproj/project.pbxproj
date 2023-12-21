@@ -37,7 +37,6 @@
 		5BA89FC42B2C7BB000210EE7 /* InfoHotel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA89FC32B2C7BB000210EE7 /* InfoHotel.swift */; };
 		5BA89FC72B2C7C3600210EE7 /* ImageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA89FC62B2C7C3600210EE7 /* ImageStackView.swift */; };
 		5BA89FC92B2C7C6D00210EE7 /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA89FC82B2C7C6D00210EE7 /* StarRatingView.swift */; };
-		5BA89FCB2B2C7EB200210EE7 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA89FCA2B2C7EB200210EE7 /* ButtonView.swift */; };
 		5BA89FCD2B2C7EEB00210EE7 /* AboutHotelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA89FCC2B2C7EEB00210EE7 /* AboutHotelView.swift */; };
 		5BA89FCF2B2C7F3A00210EE7 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA89FCE2B2C7F3A00210EE7 /* TagsView.swift */; };
 		5BA89FD12B2C7FA300210EE7 /* AboutButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA89FD02B2C7FA300210EE7 /* AboutButtonView.swift */; };
@@ -81,7 +80,6 @@
 		5BA89FC32B2C7BB000210EE7 /* InfoHotel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoHotel.swift; sourceTree = "<group>"; };
 		5BA89FC62B2C7C3600210EE7 /* ImageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStackView.swift; sourceTree = "<group>"; };
 		5BA89FC82B2C7C6D00210EE7 /* StarRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
-		5BA89FCA2B2C7EB200210EE7 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		5BA89FCC2B2C7EEB00210EE7 /* AboutHotelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutHotelView.swift; sourceTree = "<group>"; };
 		5BA89FCE2B2C7F3A00210EE7 /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		5BA89FD02B2C7FA300210EE7 /* AboutButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutButtonView.swift; sourceTree = "<group>"; };
@@ -248,7 +246,6 @@
 				5BA89FD92B2DE2C900210EE7 /* NextScreenButtonView.swift */,
 				5BA89FC62B2C7C3600210EE7 /* ImageStackView.swift */,
 				5BA89FC82B2C7C6D00210EE7 /* StarRatingView.swift */,
-				5BA89FCA2B2C7EB200210EE7 /* ButtonView.swift */,
 				5BA89FCE2B2C7F3A00210EE7 /* TagsView.swift */,
 				5B317F992B2EED2D00D8B44D /* CustomTextFieldView.swift */,
 			);
@@ -333,7 +330,6 @@
 				5B317F9C2B2EEE4400D8B44D /* InfoBooking.swift in Sources */,
 				5BA89FB92B2C729E00210EE7 /* RegisterView.swift in Sources */,
 				5BA89FD52B2C84A500210EE7 /* Room.swift in Sources */,
-				5BA89FCB2B2C7EB200210EE7 /* ButtonView.swift in Sources */,
 				5BA89FCD2B2C7EEB00210EE7 /* AboutHotelView.swift in Sources */,
 				5BA89FDC2B2DED2C00210EE7 /* RowInfoRoom.swift in Sources */,
 				5BA89FBB2B2C735000210EE7 /* CoordinatorView.swift in Sources */,
