@@ -139,10 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				5BA89FA22B2C4D7800210EE7 /* Coordinator */,
-				5BA89FAE2B2C71FE00210EE7 /* SceneHotels */,
-				5BA89FB12B2C723D00210EE7 /* SceneRooms */,
-				5BA89FB72B2C727300210EE7 /* SceneRegister */,
-				5BA89FB42B2C725900210EE7 /* SceneBooked */,
+				5BB5C5692B36262700902357 /* Scene */,
 				5B69C1092B34561A0078CA91 /* Network */,
 				5BA89FBE2B2C79C700210EE7 /* Models */,
 				5BA89F9F2B2C4CBD00210EE7 /* Theme */,
@@ -247,6 +244,17 @@
 				5B317F992B2EED2D00D8B44D /* CustomTextFieldView.swift */,
 			);
 			path = CommonViews;
+			sourceTree = "<group>";
+		};
+		5BB5C5692B36262700902357 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				5BA89FAE2B2C71FE00210EE7 /* SceneHotels */,
+				5BA89FB12B2C723D00210EE7 /* SceneRooms */,
+				5BA89FB72B2C727300210EE7 /* SceneRegister */,
+				5BA89FB42B2C725900210EE7 /* SceneBooked */,
+			);
+			path = Scene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

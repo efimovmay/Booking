@@ -12,8 +12,8 @@ struct ImageStackView: View {
 	
 	var body: some View {
 		TabView {
-			ForEach(images, id: \.self) { imageURL in
-				AsyncImage(url: URL(string: imageURL )) { phase in
+			ForEach(images.indices, id: \.self) { index in
+				AsyncImage(url: URL(string: images[index] )) { phase in
 					switch phase {
 					case .empty:
 						ProgressView()
@@ -42,7 +42,9 @@ struct ImageStackView_Previews: PreviewProvider {
 		ImageStackView(images: [
 			"https://www.atorus.ru/sites/default/files/upload/image/News/56149/Club_Priv%C3%A9_by_Belek_Club_House.jpg",
 			"https://deluxe.voyage/useruploads/articles/The_Makadi_Spa_Hotel_02.jpg",
-			"https://deluxe.voyage/useruploads/articles/article_1eb0a64d00.jpg"
+			"https://deluxe.voyage/useruploads/articles/article_1eb0a64d00.jpg",
+			"https://www.atorus.ru/sites/default/files/upload/image/News/56149/Club_Priv%C3%A9_by_Belek_Club_House.jpg",
+			"https://www.atorus.ru/sites/default/files/upload/image/News/56149/Club_Priv%C3%A9_by_Belek_Club_House.jpg"
 		])
 	}
 }
