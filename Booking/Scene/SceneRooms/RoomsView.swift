@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RoomsView: View {
 	
-	@StateObject private var viewModel = RoomsViewModel()
+	@StateObject var viewModel: RoomsViewModel
 	
 	let navigationTitle: String
 	
@@ -81,5 +81,5 @@ struct RoomsView: View {
 }
 
 #Preview {
-	RoomsView(navigationTitle: "room")
+	RoomsView(viewModel: RoomsViewModel(), navigationTitle: "room")
 }

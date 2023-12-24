@@ -39,15 +39,34 @@ final class Coordinator: ObservableObject {
 	
 	@ViewBuilder
 	func build(page: Page) -> some View {
+		
 		switch page {
 		case .hotel:
-			HotelView()
+			getHotelScene()
 		case .rooms:
-			RoomsView(navigationTitle: "")
+			getRoomsScene()
 		case .register:
-			RegisterView()
+			getRegisterScene()
 		case .booked:
 			BookedView()
 		}
+	}
+	
+	func getHotelScene() -> HotelView {
+		let viewModel = HotelViewModel()
+		let	view = HotelView(viewModel: viewModel)
+		return view
+	}
+	
+	func getRoomsScene() -> RoomsView {
+		let viewModel = RoomsViewModel()
+		let	view = RoomsView(viewModel: viewModel, navigationTitle: "viewModel")
+		return view
+	}
+	
+	func getRegisterScene() -> RegisterView {
+		let viewModel = RegisterViewModel()
+		let	view = RegisterView(viewModel: viewModel)
+		return view
 	}
 }

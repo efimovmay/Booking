@@ -9,8 +9,10 @@ import SwiftUI
 
 struct RegisterView: View {
 	
-	@StateObject private var viewModel = RegisterViewModel()
+	@StateObject var viewModel: RegisterViewModel
+	
 	@EnvironmentObject private var coordinator: Coordinator
+	
 	@State private var isShowAlert: Bool = false
 	
 	var body: some View {
@@ -83,6 +85,6 @@ struct RegisterView: View {
 
 struct RegisterView_Previews: PreviewProvider {
 	static var previews: some View {
-		RegisterView()
+		RegisterView(viewModel: RegisterViewModel())
 	}
 }

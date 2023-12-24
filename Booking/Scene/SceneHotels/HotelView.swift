@@ -9,8 +9,7 @@ import SwiftUI
 
 struct HotelView: View {
 	
-	@EnvironmentObject private var coordinator: Coordinator
-	@StateObject private var viewModel = HotelViewModel()
+	@StateObject var viewModel: HotelViewModel
 	
 	var body: some View {
 		ZStack {
@@ -54,5 +53,5 @@ struct HotelView: View {
 }
 
 #Preview {
-	HotelView()
+	HotelView(viewModel: HotelViewModel())
 }
