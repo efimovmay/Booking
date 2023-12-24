@@ -172,8 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				5BA89FAA2B2C532300210EE7 /* CoordinatorBookingApp.swift */,
-				5BA89FAC2B2C554E00210EE7 /* Coordinator.swift */,
 				5BA89FBA2B2C735000210EE7 /* CoordinatorView.swift */,
+				5BA89FAC2B2C554E00210EE7 /* Coordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";

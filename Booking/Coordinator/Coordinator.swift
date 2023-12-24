@@ -8,11 +8,6 @@
 import SwiftUI
 import Combine
 
-//protocol NavigationItemProtocol: Hashable, Identifiable {
-//	associatedtype SomeView: View
-//	func nextView() -> SomeView
-//}
-
 enum Page: Hashable, Equatable {
 	case hotel
 	case rooms(title: String)
@@ -43,8 +38,6 @@ final class Coordinator: ObservableObject {
 		case .hotel:
 			getHotelScene()
 		case .rooms(let title):
-//			let vm = RoomsViewModel()
-//			RoomsView(viewModel: vm, navigationTitle: title)
 			getRoomsScene(title: title)
 		case .register:
 			getRegisterScene()
