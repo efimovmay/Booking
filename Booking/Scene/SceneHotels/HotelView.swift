@@ -44,7 +44,10 @@ struct HotelView: View {
 		ZStack {
 			Rectangle()
 				.foregroundColor(.white)
-			NextScreenButtonView(destination: .rooms, title: "К выбору номера")
+			NextScreenButtonView(
+				destination: .rooms(title: viewModel.hotel.name),
+				title: "К выбору номера"
+			)
 				.padding(.top, 16.0)
 				.padding(.bottom, 25)
 			

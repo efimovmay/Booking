@@ -13,12 +13,11 @@ import Combine
 //	func nextView() -> SomeView
 //}
 
-enum Page: String, Identifiable {
-	case hotel, rooms, register, booked
-	
-	var id: String {
-		self.rawValue
-	}
+enum Page: Hashable, Equatable {
+	case hotel
+	case rooms(title: String)
+	case register
+	case booked
 }
 
 final class Coordinator: ObservableObject {
@@ -43,8 +42,10 @@ final class Coordinator: ObservableObject {
 		switch page {
 		case .hotel:
 			getHotelScene()
-		case .rooms:
-			getRoomsScene()
+		case .rooms(let title):
+//			let vm = RoomsViewModel()
+//			RoomsView(viewModel: vm, navigationTitle: title)
+			getRoomsScene(title: title)
 		case .register:
 			getRegisterScene()
 		case .booked:
@@ -58,9 +59,9 @@ final class Coordinator: ObservableObject {
 		return view
 	}
 	
-	func getRoomsScene() -> RoomsView {
+	func getRoomsScene(title: String) -> RoomsView {
 		let viewModel = RoomsViewModel()
-		let	view = RoomsView(viewModel: viewModel, navigationTitle: "viewModel")
+		let	view = RoomsView(viewModel: viewModel, navigationTitle: title)
 		return view
 	}
 	

@@ -45,7 +45,7 @@ struct RoomsView: View {
 				.scrollViewStyle()
 			}
 		}
-		.navigationTitle("Номера")
+		.navigationTitle(navigationTitle)
 		
 		.alert("Ошибка загрузки данных", isPresented: $viewModel.hasError) {
 			Button("Да") { viewModel.fetchMocData() }
