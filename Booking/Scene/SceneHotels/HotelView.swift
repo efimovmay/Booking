@@ -55,6 +55,6 @@ struct HotelView: View {
 	}
 }
 
-#Preview {
-	HotelView(viewModel: HotelViewModel())
-}
+//#Preview {
+//	HotelView(viewModel: HotelViewModel())
+//}
