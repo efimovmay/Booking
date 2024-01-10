@@ -56,5 +56,5 @@ struct HotelView: View {
 }
 
 #Preview {
-	HotelView(viewModel: HotelViewModel())
+	HotelView(viewModel: HotelViewModel(networkManager: NetworkManger()))
 }

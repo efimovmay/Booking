@@ -11,6 +11,7 @@
 		5B10130D2B2F72D600F8C159 /* Tourist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B10130C2B2F72D600F8C159 /* Tourist.swift */; };
 		5B10130F2B2F746C00F8C159 /* TouristsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B10130E2B2F746C00F8C159 /* TouristsInfo.swift */; };
 		5B1013112B2F784700F8C159 /* StackExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1013102B2F784700F8C159 /* StackExtension.swift */; };
+		5B12AEA12B4F112600835D90 /* PageLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B12AEA02B4F112600835D90 /* PageLink.swift */; };
 		5B317F922B2EEC7F00D8B44D /* HeadSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B317F912B2EEC7F00D8B44D /* HeadSection.swift */; };
 		5B317F942B2EECB900D8B44D /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B317F932B2EECB900D8B44D /* RegisterViewModel.swift */; };
 		5B317F962B2EECDE00D8B44D /* InfoBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B317F952B2EECDE00D8B44D /* InfoBookingView.swift */; };
@@ -52,6 +53,7 @@
 		5B10130C2B2F72D600F8C159 /* Tourist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tourist.swift; sourceTree = "<group>"; };
 		5B10130E2B2F746C00F8C159 /* TouristsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristsInfo.swift; sourceTree = "<group>"; };
 		5B1013102B2F784700F8C159 /* StackExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackExtension.swift; sourceTree = "<group>"; };
+		5B12AEA02B4F112600835D90 /* PageLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageLink.swift; sourceTree = "<group>"; };
 		5B317F912B2EEC7F00D8B44D /* HeadSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadSection.swift; sourceTree = "<group>"; };
 		5B317F932B2EECB900D8B44D /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		5B317F952B2EECDE00D8B44D /* InfoBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBookingView.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				5BBB963D2B31D21B00D4B094 /* NetworkManager.swift */,
+				5B12AEA02B4F112600835D90 /* PageLink.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B12AEA12B4F112600835D90 /* PageLink.swift in Sources */,
 				5B317FA32B2EF10100D8B44D /* NumbersFormater.swift in Sources */,
 				5B10130D2B2F72D600F8C159 /* Tourist.swift in Sources */,
 				5B317FA12B2EF0E000D8B44D /* Regex.swift in Sources */,

@@ -10,6 +10,8 @@ import Combine
 
 class HotelViewModel: ObservableObject {
 	
+	let networkManager: INetworkManger
+	
 	@Published var hotel: Hotel!
 	
 	@Published var hasError = false
@@ -21,7 +23,8 @@ class HotelViewModel: ObservableObject {
 	
 	private var cancellables = Set<AnyCancellable>()
 	
-	init() {
+	init(networkManager: INetworkManger) {
+		self.networkManager = networkManager
 		fetchData()
 	}
 	
@@ -32,14 +35,13 @@ class HotelViewModel: ObservableObject {
 	}
 	
 	func fetchData() {
-		NetworkManger.shared.fetchData(url: link.hotelData.rawValue, type: Hotel.self)
+		networkManager.fetchData(url: link.hotelData.rawValue, type: Hotel.self)
 			.sink { completion in
 				switch completion {
 				case .failure(let err):
 					print("Error is \(err.localizedDescription)")
 					self.hasError = true
 				case .finished:
-					print("Finished")
 					self.isRefreshing = false
 				}
 			}

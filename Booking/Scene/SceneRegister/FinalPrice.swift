@@ -45,6 +45,6 @@ struct FinalPriceView: View {
 
 struct FinalPriceView_Previews: PreviewProvider {
 	static var previews: some View {
-		FinalPriceView(viewModel: RegisterViewModel())
+		FinalPriceView(viewModel: RegisterViewModel(networkManager: NetworkManger()))
 	}
 }

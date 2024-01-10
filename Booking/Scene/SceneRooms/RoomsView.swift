@@ -81,5 +81,5 @@ struct RoomsView: View {
 }
 
 #Preview {
-	RoomsView(viewModel: RoomsViewModel(), navigationTitle: "room")
+	RoomsView(viewModel: RoomsViewModel(networkManager: NetworkManger()), navigationTitle: "room")
 }

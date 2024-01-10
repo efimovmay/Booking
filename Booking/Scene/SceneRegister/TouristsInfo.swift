@@ -136,5 +136,5 @@ struct TouristsInfo: View {
 }
 
 #Preview {
-	TouristsInfo(viewModel: RegisterViewModel())
+	TouristsInfo(viewModel: RegisterViewModel(networkManager: NetworkManger()))
 }

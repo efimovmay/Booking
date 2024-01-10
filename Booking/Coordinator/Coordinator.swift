@@ -19,6 +19,8 @@ final class Coordinator: ObservableObject {
 	
 	@Published var path = NavigationPath()
 	
+	let networkManager = NetworkManger()
+	
 	func push(_ page: Page) {
 		path.append(page)
 	}
@@ -47,19 +49,19 @@ final class Coordinator: ObservableObject {
 	}
 	
 	func getHotelScene() -> HotelView {
-		let viewModel = HotelViewModel()
+		let viewModel = HotelViewModel(networkManager: networkManager)
 		let	view = HotelView(viewModel: viewModel)
 		return view
 	}
 	
 	func getRoomsScene(title: String) -> RoomsView {
-		let viewModel = RoomsViewModel()
+		let viewModel = RoomsViewModel(networkManager: networkManager)
 		let	view = RoomsView(viewModel: viewModel, navigationTitle: title)
 		return view
 	}
 	
 	func getRegisterScene() -> RegisterView {
-		let viewModel = RegisterViewModel()
+		let viewModel = RegisterViewModel(networkManager: networkManager)
 		let	view = RegisterView(viewModel: viewModel)
 		return view
 	}

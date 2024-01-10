@@ -41,6 +41,6 @@ struct InfoBookingView: View {
 
 struct InfoBookingView_Previews: PreviewProvider {
 	static var previews: some View {
-		InfoBookingView(viewModel: RegisterViewModel())
+		InfoBookingView(viewModel: RegisterViewModel(networkManager: NetworkManger()))
 	}
 }

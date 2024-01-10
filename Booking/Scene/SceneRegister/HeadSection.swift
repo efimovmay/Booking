@@ -31,7 +31,7 @@ struct HeadSection: View {
 
 struct HeadSection_Previews: PreviewProvider {
 	static var previews: some View {
-		let vm = RegisterViewModel()
+		let vm = RegisterViewModel(networkManager: NetworkManger())
 		let _ = vm.fetchMocData()
 		HeadSection(viewModel: vm)
 	}

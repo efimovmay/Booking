@@ -39,7 +39,7 @@ struct AboutHotelView: View {
 
 struct AboutHotelView_Previews: PreviewProvider {
 	static var previews: some View {
-		let vm = HotelViewModel()
+		let vm = HotelViewModel(networkManager: NetworkManger())
 		let _ = vm.fetchMocData()
 		AboutHotelView(viewModel: vm)
 	}

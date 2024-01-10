@@ -10,6 +10,8 @@ import Combine
 
 class RegisterViewModel: ObservableObject {
 	
+	let networkManager: INetworkManger
+	
 	@Published var infoBooking: InfoBooking!
 	
 	@Published var touristsInfo: [Tourist] = [Tourist.getTourist()]
@@ -60,7 +62,8 @@ class RegisterViewModel: ObservableObject {
 	
 	private var cancellables = Set<AnyCancellable>()
 	
-	init() {
+	init(networkManager: INetworkManger) {
+		self.networkManager = networkManager
 		fetchData()
 	}
 	
@@ -114,14 +117,13 @@ class RegisterViewModel: ObservableObject {
 	}
 	
 	func fetchData() {
-		NetworkManger.shared.fetchData(url: link.registerData.rawValue, type: InfoBooking.self)
+		networkManager.fetchData(url: link.registerData.rawValue, type: InfoBooking.self)
 			.sink { completion in
 				switch completion {
 				case .failure(let err):
 					print("Error is \(err.localizedDescription)")
 					self.hasError = true
 				case .finished:
-					print("Finished")
 					self.isRefreshing = false
 				}
 			}

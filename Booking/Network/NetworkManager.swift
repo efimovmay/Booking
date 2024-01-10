@@ -8,12 +8,6 @@
 import Foundation
 import Combine
 
-enum link: String{
-	case hotelData = "https://run.mocky.io/v3/d144777c-a67f-4e35-867a-cacc3b827473"
-	case roomsData = "https://run.mocky.io/v3/8b532701-709e-4194-a41c-1a903af00195"
-	case registerData = "https://run.mocky.io/v3/63866c74-d593-432c-af8e-f279d1a8d2ff"
-}
-
 enum NetworkError: Error {
 	case invalidURL
 	case responseError
@@ -33,11 +27,12 @@ extension NetworkError: LocalizedError {
 	}
 }
 
-class NetworkManger {
-	
-	static let shared = NetworkManger()
-	
-	private init () {}
+protocol INetworkManger {
+	func fetchData<T: Decodable>(url: String?, type: T.Type) -> Future<T, Error>
+	func hanleOutput(output: URLSession.DataTaskPublisher.Output) throws -> Data
+}
+
+class NetworkManger: INetworkManger {
 	
 	private var cancellables = Set<AnyCancellable>()
 	

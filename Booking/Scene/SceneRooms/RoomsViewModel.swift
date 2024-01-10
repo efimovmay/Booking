@@ -10,13 +10,16 @@ import Combine
 
 class RoomsViewModel: ObservableObject {
 	
+	let networkManager: INetworkManger
+	
 	@Published var rooms: [Room] = []
 	@Published var hasError = false
 	var isRefreshing = true
 	
 	private var cancellables = Set<AnyCancellable>()
 	
-	init() {
+	init(networkManager: INetworkManger) {
+		self.networkManager = networkManager
 		fetchData()
 	}
 	
@@ -27,14 +30,13 @@ class RoomsViewModel: ObservableObject {
 	}
 	
 	func fetchData() {
-		NetworkManger.shared.fetchData(url: link.roomsData.rawValue, type: Rooms.self)
+		networkManager.fetchData(url: link.roomsData.rawValue, type: Rooms.self)
 			.sink { completion in
 				switch completion {
 				case .failure(let err):
 					print("Error is \(err.localizedDescription)")
 					self.hasError = true
 				case .finished:
-					print("Finished")
 					self.isRefreshing = false
 				}
 			}

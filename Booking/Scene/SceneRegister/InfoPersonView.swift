@@ -51,7 +51,7 @@ struct InfoPersonView: View {
 
 struct InfoPersonView_Previews: PreviewProvider {
 	static var previews: some View {
-		let vm = RegisterViewModel()
+		let vm = RegisterViewModel(networkManager: NetworkManger())
 		let _ = vm.fetchMocData()
 		InfoPersonView(viewModel: vm)
 	}
