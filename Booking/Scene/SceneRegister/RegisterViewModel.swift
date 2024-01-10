@@ -36,16 +36,17 @@ class RegisterViewModel: ObservableObject {
 	
 	// строковые свойства секции цен
 	var serviceChargeString: String {
-		"\(infoBooking.serviceCharge) ₽"
+		"\(infoBooking.serviceCharge.formattedWithSeparator) ₽"
 	}
 	var fuelChargeString: String {
-		"\(infoBooking.fuelCharge) ₽"
+		"\(infoBooking.fuelCharge.formattedWithSeparator) ₽"
 	}
 	var tourPriceString: String {
-		"\(infoBooking.tourPrice) ₽"
+		"\(infoBooking.tourPrice.formattedWithSeparator) ₽"
 	}
 	var finalPriceString: String {
-		"\(infoBooking.tourPrice + infoBooking.fuelCharge + infoBooking.serviceCharge) ₽"
+		let finalPrice = infoBooking.tourPrice + infoBooking.fuelCharge + infoBooking.serviceCharge
+		return "\(finalPrice.formattedWithSeparator ) ₽"
 	}
 	
 	var nameNextScteenButton: String {
